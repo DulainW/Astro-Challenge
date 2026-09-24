@@ -1,1280 +1,613 @@
-/* =========================================
-   ASTRO // CHALLENGE
-   GAME LOGIC
-========================================= */
-
-
-/* =========================================
-   QUESTION DATABASE
-========================================= */
+// ===============================
+// ASTRO CHALLENGE
+// ===============================
 
 const questionBank = [
 
-    /* =========================
-       OBSERVER
-    ========================== */
+    {
+        difficulty: "observer",
+        image: "https://upload.wikimedia.org/wikipedia/commons/9/99/FullMoon2010.jpg",
+        answers: ["Moon", "Mars", "Venus", "Mercury"],
+        correct: "Moon",
+        explanation: "The Moon is Earth's natural satellite and is the fifth-largest moon in the Solar System.",
+        hint: "It is Earth's only natural satellite.",
+        fact: "The Moon is approximately 384,400 km from Earth."
+    },
 
     {
         difficulty: "observer",
-
-        image:
-            "https://images.unsplash.com/photo-1534791547706-2c4b3b5e5b8f?auto=format&fit=crop&w=1200&q=80",
-
-        answers: [
-            "The Moon",
-            "Mars",
-            "Venus",
-            "Mercury"
-        ],
-
-        correct: 0,
-
-        explanation:
-            "The Moon is Earth's natural satellite and is the fifth-largest moon in the Solar System.",
-
-        hint:
-            "This object orbits Earth.",
-
-        fact:
-            "The Moon is gradually moving away from Earth at approximately 3.8 centimetres per year."
+        image: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg",
+        answers: ["Jupiter", "Saturn", "Neptune", "Uranus"],
+        correct: "Jupiter",
+        explanation: "Jupiter is the largest planet in our Solar System.",
+        hint: "It is the largest planet.",
+        fact: "Jupiter has a mass more than twice that of all the other planets combined."
     },
-
 
     {
         difficulty: "observer",
-
-        image:
-            "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1200&q=80",
-
-        answers: [
-            "Jupiter",
-            "Saturn",
-            "Neptune",
-            "Uranus"
-        ],
-
-        correct: 0,
-
-        explanation:
-            "Jupiter is the largest planet in our Solar System and is a gas giant.",
-
-        hint:
-            "This is the largest planet in the Solar System.",
-
-        fact:
-            "Jupiter is so large that more than 1,300 Earths could fit inside it by volume."
+        image: "https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg",
+        answers: ["Mars", "Venus", "Mercury", "Earth"],
+        correct: "Mars",
+        explanation: "Mars is known as the Red Planet because iron minerals in its soil give the surface its reddish appearance.",
+        hint: "Look for the reddish planet.",
+        fact: "Mars has two small moons: Phobos and Deimos."
     },
-
 
     {
         difficulty: "observer",
-
-        image:
-            "https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?auto=format&fit=crop&w=1200&q=80",
-
-        answers: [
-            "Mars",
-            "Earth",
-            "Venus",
-            "Mercury"
-        ],
-
-        correct: 0,
-
-        explanation:
-            "Mars is known as the Red Planet because iron minerals in its soil have oxidised.",
-
-        hint:
-            "Look for the planet commonly called the Red Planet.",
-
-        fact:
-            "Mars has the largest volcano in the Solar System: Olympus Mons."
+        image: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg",
+        answers: ["Saturn", "Jupiter", "Uranus", "Neptune"],
+        correct: "Saturn",
+        explanation: "Saturn is famous for its extensive ring system.",
+        hint: "Look for the planet with spectacular rings.",
+        fact: "Saturn's rings are mainly made of ice particles and rocky debris."
     },
-
 
     {
         difficulty: "observer",
-
-        image:
-            "https://images.unsplash.com/photo-1543722530-d2c3201371e7?auto=format&fit=crop&w=1200&q=80",
-
-        answers: [
-            "Saturn",
-            "Jupiter",
-            "Uranus",
-            "Neptune"
-        ],
-
-        correct: 0,
-
-        explanation:
-            "Saturn is a gas giant famous for its extensive system of rings.",
-
-        hint:
-            "Look carefully at the rings.",
-
-        fact:
-            "Saturn's rings are made primarily from particles of water ice and rocky material."
+        image: "https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg",
+        answers: ["Earth", "Venus", "Mars", "Neptune"],
+        correct: "Earth",
+        explanation: "Earth is the third planet from the Sun and the only known planet with life.",
+        hint: "This is our home planet.",
+        fact: "About 71% of Earth's surface is covered by water."
     },
-
-
-    /* =========================
-       ASTRONOMER
-    ========================== */
 
     {
         difficulty: "astronomer",
-
-        image:
-            "https://images.unsplash.com/photo-1532978379173-523e16f371f2?auto=format&fit=crop&w=1200&q=80",
-
-        answers: [
-            "Andromeda Galaxy",
-            "Orion Nebula",
-            "Whirlpool Galaxy",
-            "Sombrero Galaxy"
-        ],
-
-        correct: 0,
-
-        explanation:
-            "The Andromeda Galaxy is the nearest major galaxy to the Milky Way.",
-
-        hint:
-            "This object is approximately 2.5 million light-years away.",
-
-        fact:
-            "Andromeda is approaching the Milky Way and the two galaxies are expected to interact in the distant future."
+        image: "https://upload.wikimedia.org/wikipedia/commons/1/17/Andromeda_Galaxy_%28with_h-alpha%29.jpg",
+        answers: ["Andromeda Galaxy", "Whirlpool Galaxy", "Sombrero Galaxy", "Triangulum Galaxy"],
+        correct: "Andromeda Galaxy",
+        explanation: "The Andromeda Galaxy is the nearest major galaxy to the Milky Way.",
+        hint: "It is the closest major galaxy to ours.",
+        fact: "Andromeda is approximately 2.5 million light-years away."
     },
-
 
     {
         difficulty: "astronomer",
-
-        image:
-            "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?auto=format&fit=crop&w=1200&q=80",
-
-        answers: [
-            "Orion Nebula",
-            "Andromeda Galaxy",
-            "Crab Nebula",
-            "Ring Nebula"
-        ],
-
-        correct: 0,
-
-        explanation:
-            "The Orion Nebula is a vast region of gas and dust where new stars are forming.",
-
-        hint:
-            "This is a stellar nursery in the constellation Orion.",
-
-        fact:
-            "The Orion Nebula is visible to the naked eye under dark skies."
+        image: "https://upload.wikimedia.org/wikipedia/commons/1/14/Orion_Nebula_-_Hubble_2006_mosaic_18000.jpg",
+        answers: ["Orion Nebula", "Crab Nebula", "Ring Nebula", "Eagle Nebula"],
+        correct: "Orion Nebula",
+        explanation: "The Orion Nebula is a huge cloud of gas and dust where new stars are forming.",
+        hint: "It can be found in the constellation Orion.",
+        fact: "The Orion Nebula is approximately 1,300 light-years away."
     },
-
 
     {
         difficulty: "astronomer",
-
-        image:
-            "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=80",
-
-        answers: [
-            "A Nebula",
-            "A Black Hole",
-            "A Planet",
-            "An Asteroid"
-        ],
-
-        correct: 0,
-
-        explanation:
-            "A nebula is a large cloud of gas and dust found in space.",
-
-        hint:
-            "These structures can be locations where stars form.",
-
-        fact:
-            "Some nebulae are created from material expelled by dying stars."
+        image: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Black_hole_-_Messier_87_crop_max_res.jpg",
+        answers: ["Black Hole", "Neutron Star", "White Dwarf", "Red Giant"],
+        correct: "Black Hole",
+        explanation: "A black hole is an object with gravity so strong that even light cannot escape from within its event horizon.",
+        hint: "Nothing, not even light, can escape its event horizon.",
+        fact: "The first image of a black hole was released in 2019."
     },
-
-
-    /* =========================
-       COSMOLOGIST
-    ========================== */
 
     {
         difficulty: "cosmologist",
-
-        image:
-            "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?auto=format&fit=crop&w=1200&q=80",
-
+        image: "https://upload.wikimedia.org/wikipedia/commons/3/3c/PIA23645-Planck-ESA-CMB-map.jpg",
         answers: [
-            "A Supernova Remnant",
-            "A Planetary Ring",
-            "A Comet",
-            "A Galaxy"
+            "Cosmic Microwave Background",
+            "Solar Wind",
+            "Aurora",
+            "Interstellar Dust"
         ],
-
-        correct: 0,
-
-        explanation:
-            "A supernova remnant is the expanding material left behind after a massive star explodes.",
-
-        hint:
-            "Think about what remains after a massive star dies violently.",
-
-        fact:
-            "Supernovae can distribute heavy elements into space, contributing material for future stars and planets."
+        correct: "Cosmic Microwave Background",
+        explanation: "The Cosmic Microwave Background is radiation left over from the early universe.",
+        hint: "It is ancient radiation from the early universe.",
+        fact: "The CMB provides important evidence for the Big Bang model."
     },
-
 
     {
         difficulty: "cosmologist",
-
-        image:
-            "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=1200&q=80",
-
+        image: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Hubble_ultra_deep_field.jpg",
         answers: [
-            "A Galaxy",
-            "A Nebula",
-            "A Comet",
-            "A Star Cluster"
+            "Deep Field",
+            "Solar System",
+            "Asteroid Belt",
+            "Star Cluster"
         ],
-
-        correct: 0,
-
-        explanation:
-            "Galaxies are enormous gravitationally bound systems containing stars, gas, dust and dark matter.",
-
-        hint:
-            "This structure can contain billions of stars.",
-
-        fact:
-            "The observable universe contains an enormous number of galaxies, many of which are billions of light-years away."
+        correct: "Deep Field",
+        explanation: "Deep-field images reveal thousands of distant galaxies across a tiny region of the sky.",
+        hint: "It contains enormous numbers of distant galaxies.",
+        fact: "Some galaxies in deep-field images are billions of light-years away."
     }
 
 ];
 
 
-/* =========================================
-   GAME VARIABLES
-========================================= */
+// ===============================
+// GAME VARIABLES
+// ===============================
 
 let questions = [];
-
-let currentIndex = 0;
-
+let currentQuestion = 0;
 let score = 0;
-
-let timer = 20;
-
-let timerInterval = null;
-
+let correctCount = 0;
+let timer;
+let timeLeft = 20;
 let hintUsed = false;
-
-let answered = false;
-
-let selectedDifficulty = "observer";
-
-let playerAnswers = [];
+let selectedDifficulty = "";
 
 
-/* =========================================
-   ELEMENTS
-========================================= */
-
-const homeScreen =
-    document.getElementById("homeScreen");
-
-const difficultyScreen =
-    document.getElementById("difficultyScreen");
-
-const quizScreen =
-    document.getElementById("quizScreen");
-
-const resultsScreen =
-    document.getElementById("resultsScreen");
-
-const reviewScreen =
-    document.getElementById("reviewScreen");
-
-
-/* =========================================
-   SCREEN MANAGEMENT
-========================================= */
+// ===============================
+// SCREEN MANAGEMENT
+// ===============================
 
 function showScreen(screenId) {
 
-    document
-        .querySelectorAll(".screen")
-        .forEach(screen => {
-
-            screen.classList.remove("active");
-
-        });
-
-
-    document
-        .getElementById(screenId)
-        .classList.add("active");
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
     });
+
+    document.getElementById(screenId).classList.add("active");
+
 }
 
 
-/* =========================================
-   START
-========================================= */
+// ===============================
+// START BUTTON
+// ===============================
 
-function showDifficulty() {
+document.getElementById("startButton").addEventListener("click", () => {
 
     showScreen("difficultyScreen");
 
-}
+});
 
 
-/* =========================================
-   START GAME
-========================================= */
+// ===============================
+// DIFFICULTY SELECTION
+// ===============================
 
-function startGame(difficulty) {
+document.querySelectorAll(".difficulty-card").forEach(card => {
 
-    selectedDifficulty = difficulty;
+    card.addEventListener("click", () => {
+
+        selectedDifficulty = card.dataset.difficulty;
+
+        startGame();
+
+    });
+
+});
 
 
-    /*
-        Filter questions according
-        to selected difficulty.
-    */
+// ===============================
+// START GAME
+// ===============================
 
-    questions = questionBank.filter(
-        question =>
-            question.difficulty === difficulty
+function startGame() {
+
+    currentQuestion = 0;
+    score = 0;
+    correctCount = 0;
+
+    let selectedQuestions = questionBank.filter(
+        question => question.difficulty === selectedDifficulty
     );
 
+    // Shuffle selected questions
+    selectedQuestions = shuffle(selectedQuestions);
 
-    /*
-        Shuffle the questions
-        so they appear differently
-        each time.
-    */
+    // If there are fewer than 10 questions,
+    // add questions from the rest of the question bank.
+    let remainingQuestions = questionBank.filter(
+        question => !selectedQuestions.includes(question)
+    );
 
-    questions = shuffle([...questions]);
+    remainingQuestions = shuffle(remainingQuestions);
 
+    questions = [
+        ...selectedQuestions,
+        ...remainingQuestions
+    ].slice(0, 10);
 
-    /*
-        If there are fewer than 10
-        questions, duplicate/randomly
-        fill them.
-    */
-
-    while (questions.length < 10) {
-
-        const randomQuestion =
-            questionBank[
-                Math.floor(
-                    Math.random() *
-                    questionBank.length
-                )
-            ];
-
-        questions.push({
-            ...randomQuestion
-        });
-
-    }
-
-
-    /*
-        Limit to 10 questions.
-    */
-
-    questions =
-        questions.slice(0, 10);
-
-
-    currentIndex = 0;
-
-    score = 0;
-
-    playerAnswers = [];
-
-
-    document.getElementById(
-        "scoreDisplay"
-    ).textContent = score;
-
-
-    document.getElementById(
-        "totalQuestions"
-    ).textContent = questions.length;
-
+    document.getElementById("score").textContent = "0000";
 
     showScreen("quizScreen");
-
 
     loadQuestion();
 
 }
 
 
-/* =========================================
-   SHUFFLE
-========================================= */
+// ===============================
+// SHUFFLE
+// ===============================
 
 function shuffle(array) {
 
-    for (
-        let i = array.length - 1;
-        i > 0;
-        i--
-    ) {
+    return array.sort(() => Math.random() - 0.5);
 
-        const j =
-            Math.floor(
-                Math.random() *
-                (i + 1)
-            );
-
-        [
-            array[i],
-            array[j]
-        ] = [
-            array[j],
-            array[i]
-        ];
-
-    }
-
-    return array;
 }
 
 
-/* =========================================
-   LOAD QUESTION
-========================================= */
+// ===============================
+// LOAD QUESTION
+// ===============================
 
 function loadQuestion() {
 
-    answered = false;
+    clearInterval(timer);
 
     hintUsed = false;
+    timeLeft = 20;
 
-    timer = 20;
+    const question = questions[currentQuestion];
 
+    // Question number
+    document.getElementById("questionNumber").textContent =
+        `${String(currentQuestion + 1).padStart(2, "0")} / ${questions.length}`;
 
-    const question =
-        questions[currentIndex];
+    // Difficulty
+    document.getElementById("difficultyLabel").textContent =
+        question.difficulty.toUpperCase();
 
+    // Timer
+    document.getElementById("timer").textContent = timeLeft;
 
-    /*
-        Question number
-    */
-
-    document.getElementById(
-        "currentQuestion"
-    ).textContent =
-        String(currentIndex + 1)
-            .padStart(2, "0");
-
-
-    /*
-        Difficulty
-    */
-
-    document.getElementById(
-        "difficultyLabel"
-    ).textContent =
-        question.difficulty
-            .toUpperCase();
-
-
-    /*
-        Image
-    */
-
-    document.getElementById(
-        "questionImage"
-    ).src =
-        question.image;
-
-
-    /*
-        Reset timer
-    */
-
-    document.getElementById(
-        "timerDisplay"
-    ).textContent =
-        timer;
-
-
-    /*
-        Progress bar
-    */
-
+    // Progress
     const progress =
-        ((currentIndex) /
-            questions.length) *
-        100;
+        ((currentQuestion) / questions.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        `${progress}%`;
 
 
-    document.getElementById(
-        "progressBar"
-    ).style.width =
-        progress + "%";
+    // ===============================
+    // IMAGE
+    // ===============================
+
+    const image = document.getElementById("questionImage");
+
+    image.src = question.image;
+
+    image.onerror = function () {
+
+        console.log("Image failed to load:", question.image);
+
+        image.alt = "Astronomical image unavailable";
+
+    };
 
 
-    /*
-        Create answer buttons
-    */
+    // ===============================
+    // ANSWERS
+    // ===============================
 
     const answersContainer =
-        document.getElementById(
-            "answersContainer"
-        );
-
+        document.getElementById("answers");
 
     answersContainer.innerHTML = "";
 
+    const shuffledAnswers = shuffle([...question.answers]);
 
-    question.answers.forEach(
-        (answer, index) => {
+    shuffledAnswers.forEach(answer => {
 
-            const button =
-                document.createElement(
-                    "button"
-                );
+        const button = document.createElement("button");
 
+        button.className = "answer-button";
+        button.textContent = answer;
 
-            button.className =
-                "answer-button";
+        button.addEventListener("click", () => {
 
+            checkAnswer(answer, button);
 
-            button.innerHTML = `
+        });
 
-                <span class="answer-letter">
-                    ${String.fromCharCode(65 + index)}
-                </span>
+        answersContainer.appendChild(button);
 
-                <span>
-                    ${answer}
-                </span>
-
-            `;
+    });
 
 
-            button.onclick =
-                () =>
-                    selectAnswer(
-                        index,
-                        button
-                    );
+    // Reset buttons
+    document.getElementById("hintButton").disabled = false;
+    document.getElementById("hintButton").style.display = "block";
 
+    document.getElementById("nextButton").classList.add("hidden");
 
-            answersContainer.appendChild(
-                button
-            );
+    document.getElementById("feedback").classList.add("hidden");
 
-        }
-    );
-
-
-    /*
-        Reset hint
-    */
-
-    const hintButton =
-        document.getElementById(
-            "hintButton"
-        );
-
-
-    hintButton.disabled = false;
-
-    hintButton.style.opacity = "1";
-
-    hintButton.innerHTML =
-        "? NEED A HINT <span>−100 PTS</span>";
-
-
-    /*
-        Reset feedback
-    */
-
-    const feedback =
-        document.getElementById(
-            "feedback"
-        );
-
-
-    feedback.className =
-        "feedback";
-
-
-    feedback.style.display =
-        "none";
-
-
-    /*
-        Start timer
-    */
-
+    // Start timer
     startTimer();
 
 }
 
 
-/* =========================================
-   TIMER
-========================================= */
+// ===============================
+// TIMER
+// ===============================
 
 function startTimer() {
 
-    clearInterval(timerInterval);
+    timer = setInterval(() => {
 
+        timeLeft--;
 
-    timerInterval =
-        setInterval(() => {
+        document.getElementById("timer").textContent = timeLeft;
 
-            timer--;
+        if (timeLeft <= 0) {
 
+            clearInterval(timer);
 
-            document.getElementById(
-                "timerDisplay"
-            ).textContent =
-                timer;
+            timeOut();
 
+        }
 
-            if (timer <= 0) {
-
-                clearInterval(
-                    timerInterval
-                );
-
-
-                if (!answered) {
-
-                    timeExpired();
-
-                }
-
-            }
-
-        }, 1000);
+    }, 1000);
 
 }
 
 
-/* =========================================
-   TIME EXPIRED
-========================================= */
+// ===============================
+// CHECK ANSWER
+// ===============================
 
-function timeExpired() {
+function checkAnswer(answer, clickedButton) {
 
-    answered = true;
+    clearInterval(timer);
 
+    const question = questions[currentQuestion];
 
-    const question =
-        questions[currentIndex];
-
-
-    playerAnswers.push({
-        selected: -1,
-        correct: question.correct
+    // Prevent multiple answers
+    document.querySelectorAll(".answer-button").forEach(button => {
+        button.disabled = true;
     });
 
+    if (answer === question.correct) {
 
-    const buttons =
-        document.querySelectorAll(
-            ".answer-button"
-        );
+        correctCount++;
 
-
-    buttons.forEach(
-        (button, index) => {
-
-            button.classList.add(
-                "disabled"
-            );
-
-
-            if (
-                index ===
-                question.correct
-            ) {
-
-                button.classList.add(
-                    "correct"
-                );
-
-            }
-
-        }
-    );
-
-
-    showFeedback(false, true);
-
-}
-
-
-/* =========================================
-   SELECT ANSWER
-========================================= */
-
-function selectAnswer(
-    selectedIndex,
-    button
-) {
-
-    if (answered) return;
-
-
-    answered = true;
-
-
-    clearInterval(
-        timerInterval
-    );
-
-
-    const question =
-        questions[currentIndex];
-
-
-    const correct =
-        selectedIndex ===
-        question.correct;
-
-
-    /*
-        Save answer
-    */
-
-    playerAnswers.push({
-        selected: selectedIndex,
-        correct: question.correct
-    });
-
-
-    /*
-        Get all buttons
-    */
-
-    const buttons =
-        document.querySelectorAll(
-            ".answer-button"
-        );
-
-
-    /*
-        Disable buttons
-    */
-
-    buttons.forEach(
-        (btn, index) => {
-
-            btn.classList.add(
-                "disabled"
-            );
-
-
-            if (
-                index ===
-                question.correct
-            ) {
-
-                btn.classList.add(
-                    "correct"
-                );
-
-            }
-
-
-            if (
-                index === selectedIndex &&
-                !correct
-            ) {
-
-                btn.classList.add(
-                    "incorrect"
-                );
-
-            }
-
-        }
-    );
-
-
-    /*
-        Calculate score
-    */
-
-    if (correct) {
-
-        const timeBonus =
-            timer * 10;
-
-
-        let points =
-            500 + timeBonus;
-
+        let points = 500 + (timeLeft * 10);
 
         if (hintUsed) {
-
             points -= 100;
-
         }
-
 
         score += points;
 
+        clickedButton.classList.add("correct");
 
-        if (score < 0) {
+        showFeedback(
+            true,
+            `CORRECT +${points}`,
+            question.explanation
+        );
 
-            score = 0;
+    } else {
 
+        clickedButton.classList.add("incorrect");
+
+        // Show correct answer
+        document.querySelectorAll(".answer-button").forEach(button => {
+
+            if (button.textContent === question.correct) {
+                button.classList.add("correct");
+            }
+
+        });
+
+        showFeedback(
+            false,
+            "INCORRECT",
+            `The correct answer was ${question.correct}. ${question.explanation}`
+        );
+
+    }
+
+    updateScore();
+
+    // IMPORTANT:
+    // Show the next button after answering
+    document.getElementById("nextButton").classList.remove("hidden");
+
+}
+
+
+// ===============================
+// TIME OUT
+// ===============================
+
+function timeOut() {
+
+    const question = questions[currentQuestion];
+
+    document.querySelectorAll(".answer-button").forEach(button => {
+
+        button.disabled = true;
+
+        if (button.textContent === question.correct) {
+            button.classList.add("correct");
         }
 
+    });
 
-        document.getElementById(
-            "scoreDisplay"
-        ).textContent =
-            score;
+    showFeedback(
+        false,
+        "TIME'S UP",
+        `The correct answer was ${question.correct}. ${question.explanation}`
+    );
 
-    }
-
-
-    showFeedback(correct, false);
+    document.getElementById("nextButton").classList.remove("hidden");
 
 }
 
 
-/* =========================================
-   FEEDBACK
-========================================= */
+// ===============================
+// FEEDBACK
+// ===============================
 
-function showFeedback(
-    correct,
-    timedOut
-) {
+function showFeedback(correct, title, explanation) {
 
-    const question =
-        questions[currentIndex];
+    const feedback = document.getElementById("feedback");
 
+    feedback.classList.remove("hidden");
 
-    const feedback =
-        document.getElementById(
-            "feedback"
-        );
+    feedback.innerHTML = `
+        <strong>${title}</strong>
+        <p>${explanation}</p>
+    `;
 
-
-    const heading =
-        document.getElementById(
-            "feedbackHeading"
-        );
+}
 
 
-    const title =
-        document.getElementById(
-            "feedbackTitle"
-        );
+// ===============================
+// NEXT QUESTION
+// ===============================
 
+document.getElementById("nextButton").addEventListener("click", () => {
 
-    const explanation =
-        document.getElementById(
-            "feedbackExplanation"
-        );
+    currentQuestion++;
 
+    if (currentQuestion >= questions.length) {
 
-    const fact =
-        document.getElementById(
-            "feedbackFact"
-        );
-
-
-    if (correct) {
-
-        feedback.className =
-            "feedback show correct";
-
-
-        heading.textContent =
-            "✓ CORRECT";
-
+        showResults();
 
     } else {
 
-        feedback.className =
-            "feedback show incorrect";
-
-
-        heading.textContent =
-            timedOut
-                ? "TIME EXPIRED"
-                : "× NOT QUITE";
+        loadQuestion();
 
     }
 
-
-    title.textContent =
-        question.answers[
-            question.correct
-        ];
+});
 
 
-    explanation.textContent =
-        question.explanation;
+// ===============================
+// HINT
+// ===============================
 
+document.getElementById("hintButton").addEventListener("click", () => {
 
-    fact.textContent =
-        question.fact;
-
-
-    /*
-        Change next button text
-        on final question.
-    */
-
-    const nextButton =
-        feedback.querySelector(
-            ".next-button"
-        );
-
-
-    if (
-        currentIndex ===
-        questions.length - 1
-    ) {
-
-        nextButton.textContent =
-            "VIEW RESULTS →";
-
-    } else {
-
-        nextButton.textContent =
-            "NEXT OBJECT →";
-
-    }
-
-}
-
-
-/* =========================================
-   NEXT QUESTION
-========================================= */
-
-function nextQuestion() {
-
-    if (
-        currentIndex >=
-        questions.length - 1
-    ) {
-
-        finishGame();
-
-        return;
-
-    }
-
-
-    currentIndex++;
-
-    loadQuestion();
-
-}
-
-
-/* =========================================
-   HINT
-========================================= */
-
-function useHint() {
-
-    if (
-        hintUsed ||
-        answered
-    ) {
-
-        return;
-
-    }
-
+    if (hintUsed) return;
 
     hintUsed = true;
 
+    const question = questions[currentQuestion];
 
-    score -= 100;
+    const feedback = document.getElementById("feedback");
 
+    feedback.classList.remove("hidden");
 
-    if (score < 0) {
+    feedback.innerHTML = `
+        <strong>HINT</strong>
+        <p>${question.hint}</p>
+    `;
 
-        score = 0;
+    document.getElementById("hintButton").disabled = true;
 
-    }
-
-
-    document.getElementById(
-        "scoreDisplay"
-    ).textContent =
-        score;
-
-
-    const question =
-        questions[currentIndex];
+});
 
 
-    const hintButton =
-        document.getElementById(
-            "hintButton"
-        );
+// ===============================
+// UPDATE SCORE
+// ===============================
 
+function updateScore() {
 
-    hintButton.innerHTML =
-        "HINT: " +
-        question.hint;
-
-
-    hintButton.style.color =
-        "var(--accent)";
-
-
-    hintButton.disabled =
-        true;
+    document.getElementById("score").textContent =
+        String(score).padStart(4, "0");
 
 }
 
 
-/* =========================================
-   FINISH GAME
-========================================= */
+// ===============================
+// RESULTS
+// ===============================
 
-function finishGame() {
+function showResults() {
 
-    clearInterval(
-        timerInterval
-    );
+    clearInterval(timer);
 
+    showScreen("resultsScreen");
 
-    const correctAnswers =
-        playerAnswers.filter(
-            answer =>
-                answer.selected ===
-                answer.correct
-        ).length;
+    const percentage =
+        Math.round((correctCount / questions.length) * 100);
 
+    let rank;
 
-    const accuracy =
-        Math.round(
-            (correctAnswers /
-                questions.length) *
-            100
-        );
-
-
-    /*
-        Rank
-    */
-
-    let rank = "";
-
-    let message = "";
-
-
-    if (accuracy >= 90) {
-
+    if (percentage >= 90) {
         rank = "COSMOLOGIST";
-
-        message =
-            "Exceptional. You have a serious understanding of the universe.";
-
-    } else if (accuracy >= 70) {
-
+    } else if (percentage >= 70) {
         rank = "ASTRONOMER";
-
-        message =
-            "Excellent work. You know your way around the night sky.";
-
-    } else if (accuracy >= 50) {
-
+    } else if (percentage >= 50) {
         rank = "SPACE EXPLORER";
-
-        message =
-            "A solid mission. There is still plenty of the universe to explore.";
-
     } else {
-
         rank = "SPACE CADET";
-
-        message =
-            "Every astronomer starts somewhere. Keep exploring.";
-
     }
 
+    document.getElementById("finalRank").textContent = rank;
 
-    document.getElementById(
-        "finalScore"
-    ).textContent =
-        score;
+    document.getElementById("finalScore").textContent = score;
 
+    document.getElementById("correctAnswers").textContent =
+        correctCount;
 
-    document.getElementById(
-        "accuracy"
-    ).textContent =
-        accuracy + "%";
-
-
-    document.getElementById(
-        "finalQuestions"
-    ).textContent =
+    document.getElementById("totalQuestions").textContent =
         questions.length;
 
-
-    document.getElementById(
-        "rank"
-    ).textContent =
-        rank;
-
-
-    document.getElementById(
-        "resultRankTitle"
-    ).textContent =
-        rank;
-
-
-    document.getElementById(
-        "resultMessage"
-    ).textContent =
-        message;
-
-
-    showScreen(
-        "resultsScreen"
-    );
+    document.getElementById("accuracy").textContent =
+        `${percentage}%`;
 
 }
 
 
-/* =========================================
-   REVIEW
-========================================= */
+// ===============================
+// REVIEW
+// ===============================
 
-function showReview() {
+document.getElementById("reviewButton").addEventListener("click", () => {
 
-    const reviewList =
-        document.getElementById(
-            "reviewList"
-        );
+    showScreen("reviewScreen");
 
+    const reviewList = document.getElementById("reviewList");
 
     reviewList.innerHTML = "";
 
+    questions.forEach((question, index) => {
 
-    questions.forEach(
-        (question, index) => {
+        const item = document.createElement("div");
 
-            const result =
-                playerAnswers[index];
+        item.className = "review-item";
 
+        item.innerHTML = `
+            <span class="review-number">
+                ${String(index + 1).padStart(2, "0")}
+            </span>
 
-            const wasCorrect =
-                result.selected ===
-                result.correct;
+            <div>
+                <strong>${question.correct}</strong>
+                <p>${question.explanation}</p>
+            </div>
+        `;
 
+        reviewList.appendChild(item);
 
-            const item =
-                document.createElement(
-                    "div"
-                );
+    });
 
-
-            item.className =
-                "review-item";
-
-
-            const status =
-                wasCorrect
-                    ? "CORRECT"
-                    : "INCORRECT";
+});
 
 
-            const statusClass =
-                wasCorrect
-                    ? "correct"
-                    : "incorrect";
+// ===============================
+// BACK TO RESULTS
+// ===============================
+
+document.getElementById("reviewBackButton").addEventListener("click", () => {
+
+    showScreen("resultsScreen");
+
+});
 
 
-            item.innerHTML = `
+// ===============================
+// RESTART
+// ===============================
 
-                <div class="review-item-header">
+document.getElementById("restartButton").addEventListener("click", () => {
 
-                    <span>
-                        OBJECT ${String(index + 1).padStart(2, "0")}
-                    </span>
+    clearInterval(timer);
 
-                    <span class="review-status ${statusClass}">
-                        ${status}
-                    </span>
+    showScreen("difficultyScreen");
 
-                </div>
-
-                <h3>
-                    ${question.answers[question.correct]}
-                </h3>
-
-                <p>
-                    ${question.explanation}
-                </p>
-
-            `;
-
-
-            reviewList.appendChild(
-                item
-            );
-
-        }
-    );
-
-
-    showScreen(
-        "reviewScreen"
-    );
-
-}
-
-
-/* =========================================
-   RESTART
-========================================= */
-
-function restartGame() {
-
-    showScreen(
-        "difficultyScreen"
-    );
-
-}
-
-
-/* =========================================
-   INITIALIZATION
-========================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        showScreen(
-            "homeScreen"
-        );
-
-    }
-);
+});

@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ASTRO // CHALLENGE</title>
+    <title>ASTRO CHALLENGE</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -17,140 +16,65 @@
 
 <body>
 
-    <!-- Background -->
-    <div class="background">
-        <div class="stars"></div>
-    </div>
+    <div class="background-stars"></div>
 
-    <main class="app">
+    <header>
+        <div class="logo">ASTRO CHALLENGE</div>
+        <div class="header-line"></div>
+    </header>
 
-        <!-- =========================
-             HOME SCREEN
-        ========================== -->
+    <main>
 
+        <!-- HOME -->
         <section id="homeScreen" class="screen active">
 
-            <div class="top-label">
-                SCIENCE SOCIETY <span>•</span> ASTRONOMY
-            </div>
-
             <div class="hero">
-
-                <div class="eyebrow">
-                    ASTRO // CHALLENGE
-                </div>
+                <p class="eyebrow">ASTRONOMY QUIZ</p>
 
                 <h1>
-                    HOW WELL DO YOU<br>
-                    KNOW THE <span>UNIVERSE?</span>
+                    How well do you<br>
+                    know the universe?
                 </h1>
 
-                <p class="hero-description">
-                    Identify astronomical objects, test your knowledge,
-                    and discover something new along the way.
+                <p class="hero-text">
+                    Identify planets, stars, galaxies and other
+                    astronomical objects from images and clues.
                 </p>
 
-                <button class="primary-button" onclick="showDifficulty()">
-                    START MISSION
-                    <span>→</span>
+                <button id="startButton" class="primary-button">
+                    START CHALLENGE
                 </button>
-
-                <div class="mission-info">
-                    <div>
-                        <strong>10</strong>
-                        <span>OBJECTS</span>
-                    </div>
-
-                    <div>
-                        <strong>~3</strong>
-                        <span>MINUTES</span>
-                    </div>
-
-                    <div>
-                        <strong>∞</strong>
-                        <span>KNOWLEDGE</span>
-                    </div>
-                </div>
-
             </div>
 
         </section>
 
 
-        <!-- =========================
-             DIFFICULTY SCREEN
-        ========================== -->
-
+        <!-- DIFFICULTY -->
         <section id="difficultyScreen" class="screen">
 
-            <div class="small-header">
-                <span>ASTRO // CHALLENGE</span>
-                <span>01</span>
+            <div class="section-heading">
+                <p class="eyebrow">SELECT LEVEL</p>
+                <h2>Choose your difficulty</h2>
             </div>
 
-            <div class="difficulty-container">
+            <div class="difficulty-grid">
 
-                <div class="eyebrow">
-                    SELECT DIFFICULTY
-                </div>
+                <button class="difficulty-card" data-difficulty="observer">
+                    <span class="difficulty-number">01</span>
+                    <h3>OBSERVER</h3>
+                    <p>Recognise familiar objects in our solar system.</p>
+                </button>
 
-                <h2>Choose your mission.</h2>
+                <button class="difficulty-card" data-difficulty="astronomer">
+                    <span class="difficulty-number">02</span>
+                    <h3>ASTRONOMER</h3>
+                    <p>Test your knowledge of stars and deep space.</p>
+                </button>
 
-                <p>
-                    Each level contains different astronomical objects
-                    and questions.
-                </p>
-
-                <div class="difficulty-options">
-
-                    <button class="difficulty-card" onclick="startGame('observer')">
-                        <div class="difficulty-number">01</div>
-
-                        <div>
-                            <h3>OBSERVER</h3>
-                            <p>
-                                Familiar objects from our Solar System
-                                and night sky.
-                            </p>
-                        </div>
-
-                        <span class="arrow">→</span>
-                    </button>
-
-
-                    <button class="difficulty-card" onclick="startGame('astronomer')">
-                        <div class="difficulty-number">02</div>
-
-                        <div>
-                            <h3>ASTRONOMER</h3>
-                            <p>
-                                Galaxies, nebulae, stars and
-                                planetary phenomena.
-                            </p>
-                        </div>
-
-                        <span class="arrow">→</span>
-                    </button>
-
-
-                    <button class="difficulty-card" onclick="startGame('cosmologist')">
-                        <div class="difficulty-number">03</div>
-
-                        <div>
-                            <h3>COSMOLOGIST</h3>
-                            <p>
-                                More obscure astronomical objects
-                                and advanced concepts.
-                            </p>
-                        </div>
-
-                        <span class="arrow">→</span>
-                    </button>
-
-                </div>
-
-                <button class="back-button" onclick="showScreen('homeScreen')">
-                    ← BACK
+                <button class="difficulty-card" data-difficulty="cosmologist">
+                    <span class="difficulty-number">03</span>
+                    <h3>COSMOLOGIST</h3>
+                    <p>Take on challenging astronomical concepts.</p>
                 </button>
 
             </div>
@@ -158,120 +82,56 @@
         </section>
 
 
-        <!-- =========================
-             QUIZ SCREEN
-        ========================== -->
-
+        <!-- QUIZ -->
         <section id="quizScreen" class="screen">
 
-            <header class="quiz-header">
+            <div class="quiz-top">
 
-                <div class="quiz-brand">
-                    ASTRO // CHALLENGE
+                <div>
+                    <span class="small-label">QUESTION</span>
+                    <strong id="questionNumber">01 / 10</strong>
                 </div>
 
-                <div class="question-number">
-                    QUESTION <span id="currentQuestion">01</span>
-                    /
-                    <span id="totalQuestions">10</span>
+                <div>
+                    <span class="small-label">SCORE</span>
+                    <strong id="score">0000</strong>
                 </div>
 
-                <div class="score">
-                    <span>SCORE</span>
-                    <strong id="scoreDisplay">0</strong>
+                <div class="timer-container">
+                    <span class="small-label">TIME</span>
+                    <strong id="timer">20</strong>
                 </div>
 
-            </header>
-
-
-            <!-- Progress -->
+            </div>
 
             <div class="progress-container">
                 <div id="progressBar"></div>
             </div>
 
 
-            <div class="quiz-content">
+            <div class="quiz-card">
 
-                <div class="question-meta">
-
-                    <span id="difficultyLabel">
-                        ASTRONOMER
-                    </span>
-
-                    <div class="timer">
-                        <span>TIME</span>
-                        <strong id="timerDisplay">20</strong>
-                    </div>
-
+                <div class="quiz-image-container">
+                    <img id="questionImage" src="" alt="Astronomical object">
                 </div>
 
+                <div class="question-content">
 
-                <!-- Image -->
+                    <p class="eyebrow" id="difficultyLabel">
+                        OBSERVER
+                    </p>
 
-                <div class="image-container">
+                    <h2>WHAT AM I?</h2>
 
-                    <img
-                        id="questionImage"
-                        src=""
-                        alt="Astronomical object"
-                    >
+                    <div id="answers" class="answers"></div>
 
-                    <div class="image-label">
-                        ASTRONOMICAL OBSERVATION
-                    </div>
+                    <button id="hintButton" class="secondary-button">
+                        USE HINT −100
+                    </button>
 
-                </div>
+                    <div id="feedback" class="feedback hidden"></div>
 
-
-                <!-- Question -->
-
-                <h2 class="question-title">
-                    WHAT AM I?
-                </h2>
-
-
-                <!-- Answers -->
-
-                <div id="answersContainer" class="answers">
-                </div>
-
-
-                <!-- Hint -->
-
-                <button
-                    id="hintButton"
-                    class="hint-button"
-                    onclick="useHint()"
-                >
-                    ? NEED A HINT
-                    <span>−100 PTS</span>
-                </button>
-
-
-                <!-- Feedback -->
-
-                <div id="feedback" class="feedback">
-
-                    <div class="feedback-heading" id="feedbackHeading">
-                    </div>
-
-                    <h3 id="feedbackTitle"></h3>
-
-                    <p id="feedbackExplanation"></p>
-
-                    <div class="fact-box">
-
-                        <span>DID YOU KNOW?</span>
-
-                        <p id="feedbackFact"></p>
-
-                    </div>
-
-                    <button
-                        class="next-button"
-                        onclick="nextQuestion()"
-                    >
+                    <button id="nextButton" class="primary-button hidden">
                         NEXT OBJECT →
                     </button>
 
@@ -282,148 +142,72 @@
         </section>
 
 
-        <!-- =========================
-             RESULTS SCREEN
-        ========================== -->
-
+        <!-- RESULTS -->
         <section id="resultsScreen" class="screen">
 
-            <div class="results-container">
+            <div class="results">
 
-                <div class="eyebrow">
-                    MISSION COMPLETE
-                </div>
+                <p class="eyebrow">CHALLENGE COMPLETE</p>
 
-                <h1>
-                    YOUR <span>RESULTS</span>
-                </h1>
+                <h1 id="finalRank">ASTRONOMER</h1>
 
-                <div class="result-score">
+                <p class="final-score">
+                    <span id="finalScore">0</span> POINTS
+                </p>
 
-                    <strong id="finalScore">
-                        0
-                    </strong>
-
-                    <span>
-                        POINTS
-                    </span>
-
-                </div>
-
-
-                <div class="result-grid">
+                <div class="result-stats">
 
                     <div>
-                        <span>ACCURACY</span>
-                        <strong id="accuracy">
-                            0%
-                        </strong>
+                        <span>Correct</span>
+                        <strong id="correctAnswers">0</strong>
                     </div>
 
                     <div>
-                        <span>QUESTIONS</span>
-                        <strong id="finalQuestions">
-                            10
-                        </strong>
+                        <span>Questions</span>
+                        <strong id="totalQuestions">10</strong>
                     </div>
 
                     <div>
-                        <span>RANK</span>
-                        <strong id="rank">
-                            -
-                        </strong>
+                        <span>Accuracy</span>
+                        <strong id="accuracy">0%</strong>
                     </div>
 
                 </div>
 
+                <button id="reviewButton" class="secondary-button">
+                    REVIEW ANSWERS
+                </button>
 
-                <div class="result-message">
-
-                    <span id="resultRankTitle">
-                        ASTRONOMER
-                    </span>
-
-                    <p id="resultMessage">
-                        You know your way around the night sky.
-                    </p>
-
-                </div>
-
-
-                <div class="result-actions">
-
-                    <button
-                        class="primary-button"
-                        onclick="restartGame()"
-                    >
-                        PLAY AGAIN
-                        <span>↻</span>
-                    </button>
-
-                    <button
-                        class="secondary-button"
-                        onclick="showReview()"
-                    >
-                        VIEW ANSWERS
-                    </button>
-
-                </div>
+                <button id="restartButton" class="primary-button">
+                    PLAY AGAIN
+                </button>
 
             </div>
 
         </section>
 
 
-        <!-- =========================
-             REVIEW SCREEN
-        ========================== -->
-
+        <!-- REVIEW -->
         <section id="reviewScreen" class="screen">
 
-            <div class="review-container">
-
-                <div class="small-header">
-                    <span>MISSION REPORT</span>
-                    <span>FINAL</span>
-                </div>
-
-                <div class="eyebrow">
-                    REVIEW
-                </div>
-
-                <h2>
-                    WHAT YOU <span>LEARNED</span>
-                </h2>
-
-                <div id="reviewList" class="review-list">
-                </div>
-
-                <button
-                    class="primary-button"
-                    onclick="restartGame()"
-                >
-                    PLAY AGAIN
-                    <span>↻</span>
-                </button>
-
-                <button
-                    class="back-button"
-                    onclick="showScreen('resultsScreen')"
-                >
-                    ← BACK TO RESULTS
-                </button>
-
+            <div class="section-heading">
+                <p class="eyebrow">REVIEW</p>
+                <h2>Your answers</h2>
             </div>
+
+            <div id="reviewList"></div>
+
+            <button id="reviewBackButton" class="primary-button">
+                BACK TO RESULTS
+            </button>
 
         </section>
 
     </main>
 
-
     <footer>
-        SCIENCE SOCIETY • ASTRO // CHALLENGE
+        ASTRO CHALLENGE
     </footer>
-
 
     <script src="script.js"></script>
 

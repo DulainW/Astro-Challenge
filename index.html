@@ -41,7 +41,7 @@
                     astronomical objects from images and clues.
                 </p>
 
-                <button id="startButton" class="primary-button">
+                <button id="startButton" type="button" class="primary-button">
                     START CHALLENGE
                 </button>
             </div>
@@ -59,19 +59,19 @@
 
             <div class="difficulty-grid">
 
-                <button class="difficulty-card" data-difficulty="observer">
+                <button type="button" class="difficulty-card" data-difficulty="observer">
                     <span class="difficulty-number">01</span>
                     <h3>OBSERVER</h3>
                     <p>Recognise familiar objects in our solar system.</p>
                 </button>
 
-                <button class="difficulty-card" data-difficulty="astronomer">
+                <button type="button" class="difficulty-card" data-difficulty="astronomer">
                     <span class="difficulty-number">02</span>
                     <h3>ASTRONOMER</h3>
                     <p>Test your knowledge of stars and deep space.</p>
                 </button>
 
-                <button class="difficulty-card" data-difficulty="cosmologist">
+                <button type="button" class="difficulty-card" data-difficulty="cosmologist">
                     <span class="difficulty-number">03</span>
                     <h3>COSMOLOGIST</h3>
                     <p>Take on challenging astronomical concepts.</p>
@@ -111,8 +111,8 @@
 
             <div class="quiz-card">
 
-                <div class="quiz-image-container">
-                    <img id="questionImage" src="" alt="Astronomical object">
+                <div id="questionImageContainer" class="quiz-image-container">
+                    <img id="questionImage" alt="">
                 </div>
 
                 <div class="question-content">
@@ -121,18 +121,20 @@
                         OBSERVER
                     </p>
 
-                    <h2>WHAT AM I?</h2>
+                    <h2 id="questionText" class="question-text"></h2>
 
                     <div id="answers" class="answers"></div>
 
-                    <button id="hintButton" class="secondary-button">
+                    <button id="hintButton" type="button" class="secondary-button">
                         USE HINT −100
                     </button>
 
-                    <div id="feedback" class="feedback hidden"></div>
+                    <p id="hintText" class="hint-text hidden"></p>
 
-                    <button id="nextButton" class="primary-button hidden">
-                        NEXT OBJECT →
+                    <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+
+                    <button id="nextButton" type="button" class="primary-button hidden">
+                        NEXT QUESTION →
                     </button>
 
                 </div>
@@ -174,11 +176,11 @@
 
                 </div>
 
-                <button id="reviewButton" class="secondary-button">
+                <button id="reviewButton" type="button" class="secondary-button">
                     REVIEW ANSWERS
                 </button>
 
-                <button id="restartButton" class="primary-button">
+                <button id="restartButton" type="button" class="primary-button">
                     PLAY AGAIN
                 </button>
 
@@ -197,7 +199,7 @@
 
             <div id="reviewList"></div>
 
-            <button id="reviewBackButton" class="primary-button">
+            <button id="reviewBackButton" type="button" class="primary-button">
                 BACK TO RESULTS
             </button>
 

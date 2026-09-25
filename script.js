@@ -1,7 +1,7 @@
 const questionBank = [
     {
         difficulty: "observer",
-        image: "assets/images/moon.jpg",
+        image: "moon.jpg",
         question: "Which object is shown in this image?",
         answers: ["The Moon", "Mars", "Mercury", "Venus"],
         correct: 0,
@@ -12,7 +12,7 @@ const questionBank = [
 
     {
         difficulty: "observer",
-        image: "assets/images/jupiter.jpg",
+        image: "jupiter.jpg",
         question: "Which planet is shown in this image?",
         answers: ["Saturn", "Jupiter", "Neptune", "Uranus"],
         correct: 1,
@@ -23,7 +23,7 @@ const questionBank = [
 
     {
         difficulty: "observer",
-        image: "assets/images/mars.jpg",
+        image: "mars.jpg",
         question: "Which planet is known as the Red Planet?",
         answers: ["Mars", "Venus", "Mercury", "Earth"],
         correct: 0,
@@ -34,7 +34,7 @@ const questionBank = [
 
     {
         difficulty: "observer",
-        image: "assets/images/saturn.jpg",
+        image: "saturn.jpg",
         question: "Which planet is famous for its prominent ring system?",
         answers: ["Jupiter", "Uranus", "Saturn", "Neptune"],
         correct: 2,
@@ -45,7 +45,7 @@ const questionBank = [
 
     {
         difficulty: "observer",
-        image: "assets/images/earth.jpg",
+        image: "earth.jpg",
         question: "Which planet is shown in this image?",
         answers: ["Earth", "Venus", "Mars", "Neptune"],
         correct: 0,
@@ -56,7 +56,7 @@ const questionBank = [
 
     {
         difficulty: "astronomer",
-        image: "assets/images/andromeda.jpg",
+        image: "andromeda.jpg",
         question: "What type of object is the Andromeda Galaxy?",
         answers: [
             "Spiral galaxy",
@@ -72,7 +72,7 @@ const questionBank = [
 
     {
         difficulty: "astronomer",
-        image: "assets/images/orion.jpg",
+        image: "orion.jpg",
         question: "What is the bright reddish region in this image?",
         answers: [
             "Orion Nebula",
@@ -88,7 +88,7 @@ const questionBank = [
 
     {
         difficulty: "astronomer",
-        image: "assets/images/black-hole.jpg",
+        image: "black-hole.jpg",
         question: "What is a black hole?",
         answers: [
             "A region where gravity is so strong that light cannot escape",
@@ -104,7 +104,7 @@ const questionBank = [
 
     {
         difficulty: "cosmologist",
-        image: "assets/images/cmb.jpg",
+        image: "cmb.jpg",
         question: "What does the Cosmic Microwave Background represent?",
         answers: [
             "Radiation left over from the early universe",
@@ -120,7 +120,7 @@ const questionBank = [
 
     {
         difficulty: "cosmologist",
-        image: "assets/images/deep-field.jpg",
+        image: "deep-field.jpg",
         question: "What does a deep-field image allow astronomers to study?",
         answers: [
             "Distant galaxies across the universe",

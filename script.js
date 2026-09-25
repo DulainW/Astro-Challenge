@@ -191,7 +191,7 @@ let gameQuestions = [];
 
 
 // ==========================================
-// START EVERYTHING AFTER PAGE LOADS
+// PAGE LOAD
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -218,7 +218,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const hintText = document.getElementById("hintText");
 
     const feedback = document.getElementById("feedback");
-    const nextButton = document.getElementById("nextButton");
 
     const finalScore = document.getElementById("finalScore");
     const finalAccuracy = document.getElementById("finalAccuracy");
@@ -227,6 +226,57 @@ document.addEventListener("DOMContentLoaded", function () {
     const reviewContainer = document.getElementById("reviewContainer");
     const reviewButton = document.getElementById("reviewButton");
     const restartButton = document.getElementById("restartButton");
+
+
+    // ==========================================
+    // CREATE NEXT BUTTON IF MISSING
+    // ==========================================
+
+    let nextButton = document.getElementById("nextButton");
+
+    if (!nextButton) {
+
+        nextButton = document.createElement("button");
+
+        nextButton.id = "nextButton";
+
+        nextButton.textContent = "NEXT QUESTION →";
+
+        nextButton.type = "button";
+
+        nextButton.style.display = "none";
+
+        nextButton.style.marginTop = "20px";
+
+        nextButton.style.padding = "14px 28px";
+
+        nextButton.style.cursor = "pointer";
+
+        nextButton.style.fontSize = "16px";
+
+        nextButton.style.fontWeight = "bold";
+
+        nextButton.style.border = "none";
+
+        nextButton.style.borderRadius = "8px";
+
+        nextButton.style.background = "#ffffff";
+
+        nextButton.style.color = "#000000";
+
+
+        // Put button directly after the answers
+
+        if (answersContainer) {
+
+            answersContainer.parentNode.insertBefore(
+                nextButton,
+                answersContainer.nextSibling
+            );
+
+        }
+
+    }
 
 
     // ==========================================
@@ -257,6 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const difficultyCards =
         document.querySelectorAll(".difficulty-card");
 
+
     difficultyCards.forEach(function (card) {
 
         card.addEventListener("click", function () {
@@ -280,6 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clearInterval(timer);
 
         score = 0;
+
         currentQuestion = 0;
 
         const selectedQuestions =
@@ -289,6 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             });
 
+
         const otherQuestions =
             questionBank.filter(function (question) {
 
@@ -296,13 +349,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             });
 
+
         shuffleArray(selectedQuestions);
+
         shuffleArray(otherQuestions);
+
 
         gameQuestions = [
             ...selectedQuestions,
             ...otherQuestions
         ].slice(0, 10);
+
 
         shuffleArray(gameQuestions);
 
@@ -327,6 +384,7 @@ document.addEventListener("DOMContentLoaded", function () {
             quizScreen.classList.add("active");
         }
 
+
         loadQuestion();
 
     }
@@ -342,6 +400,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const question =
             gameQuestions[currentQuestion];
+
 
         if (!question) {
             return;
@@ -389,22 +448,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (question.image) {
 
-                questionImage.style.display = "block";
-
                 questionImage.src =
                     question.image;
 
                 questionImage.alt =
                     "Astronomical object";
 
-            } else {
+                questionImage.style.display =
+                    "block";
 
-                // No image for Moon, CMB,
-                // Deep Field and Orion Nebula
+            }
+
+            else {
 
                 questionImage.removeAttribute("src");
 
-                questionImage.style.display = "none";
+                questionImage.style.display =
+                    "none";
 
             }
 
@@ -419,29 +479,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
             answersContainer.innerHTML = "";
 
-            question.answers.forEach(function (answer, index) {
 
-                const button =
-                    document.createElement("button");
+            question.answers.forEach(
+                function (answer, index) {
 
-                button.className =
-                    "answer-button";
+                    const button =
+                        document.createElement("button");
 
-                button.textContent =
-                    answer;
 
-                button.addEventListener(
-                    "click",
-                    function () {
+                    button.className =
+                        "answer-button";
 
-                        checkAnswer(index);
 
-                    }
-                );
+                    button.type =
+                        "button";
 
-                answersContainer.appendChild(button);
 
-            });
+                    button.textContent =
+                        answer;
+
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            checkAnswer(index);
+
+                        }
+                    );
+
+
+                    answersContainer.appendChild(
+                        button
+                    );
+
+                }
+            );
 
         }
 
@@ -454,19 +527,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
             feedback.textContent = "";
 
-            feedback.className =
-                "feedback";
+            feedback.className = "feedback";
 
         }
 
+
+        // ==========================================
+        // HIDE NEXT BUTTON
+        // ==========================================
 
         if (nextButton) {
 
-            nextButton.style.display =
-                "none";
+            nextButton.style.display = "none";
+
+            nextButton.disabled = false;
+
+            nextButton.textContent =
+                currentQuestion === gameQuestions.length - 1
+                    ? "VIEW RESULTS →"
+                    : "NEXT QUESTION →";
 
         }
 
+
+        // ==========================================
+        // RESET HINT
+        // ==========================================
 
         if (hintText) {
 
@@ -497,6 +583,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        // ==========================================
+        // START TIMER
+        // ==========================================
+
         startTimer();
 
     }
@@ -512,11 +602,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         updateTimer();
 
+
         timer = setInterval(function () {
 
             timeLeft--;
 
             updateTimer();
+
 
             if (timeLeft <= 0) {
 
@@ -551,8 +643,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         clearInterval(timer);
 
+
         const question =
             gameQuestions[currentQuestion];
+
 
         const buttons =
             document.querySelectorAll(
@@ -560,7 +654,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        // Disable all answers
+        // Disable answers
 
         buttons.forEach(function (button) {
 
@@ -569,7 +663,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
 
-        // Highlight correct answer
+        // Show correct answer
 
         if (buttons[question.correct]) {
 
@@ -589,22 +683,15 @@ document.addEventListener("DOMContentLoaded", function () {
             let points =
                 500 + (timeLeft * 10);
 
+
             if (hintUsed) {
 
                 points -= 100;
 
             }
 
+
             score += points;
-
-
-            if (buttons[selectedIndex]) {
-
-                buttons[
-                    selectedIndex
-                ].classList.add("correct");
-
-            }
 
 
             if (feedback) {
@@ -612,9 +699,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 feedback.textContent =
                     `CORRECT — +${points} points`;
 
-                feedback.classList.add(
-                    "correct-feedback"
-                );
+                feedback.className =
+                    "feedback correct-feedback";
 
             }
 
@@ -641,23 +727,48 @@ document.addEventListener("DOMContentLoaded", function () {
                 feedback.textContent =
                     `INCORRECT — ${question.explanation}`;
 
-                feedback.classList.add(
-                    "incorrect-feedback"
-                );
+                feedback.className =
+                    "feedback incorrect-feedback";
 
             }
 
         }
 
 
-        // Show next button
+        // ==========================================
+        // SHOW NEXT BUTTON
+        // ==========================================
 
-        if (nextButton) {
+        showNextButton();
 
-            nextButton.style.display =
-                "block";
+    }
 
+
+    // ==========================================
+    // SHOW NEXT BUTTON
+    // ==========================================
+
+    function showNextButton() {
+
+        if (!nextButton) {
+            return;
         }
+
+
+        nextButton.style.display =
+            "block";
+
+
+        nextButton.style.visibility =
+            "visible";
+
+
+        nextButton.style.opacity =
+            "1";
+
+
+        nextButton.disabled =
+            false;
 
     }
 
@@ -670,6 +781,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const question =
             gameQuestions[currentQuestion];
+
 
         const buttons =
             document.querySelectorAll(
@@ -698,19 +810,13 @@ document.addEventListener("DOMContentLoaded", function () {
             feedback.textContent =
                 `TIME'S UP — ${question.explanation}`;
 
-            feedback.classList.add(
-                "incorrect-feedback"
-            );
+            feedback.className =
+                "feedback incorrect-feedback";
 
         }
 
 
-        if (nextButton) {
-
-            nextButton.style.display =
-                "block";
-
-        }
+        showNextButton();
 
     }
 
@@ -735,7 +841,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     showResults();
 
-                } else {
+                }
+
+                else {
 
                     loadQuestion();
 
@@ -888,7 +996,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
-
                 if (resultsScreen) {
 
                     resultsScreen.classList.remove(
@@ -914,8 +1021,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                reviewContainer.innerHTML =
-                    "";
+                reviewContainer.innerHTML = "";
 
 
                 gameQuestions.forEach(
@@ -1030,7 +1136,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==========================================
-    // SHUFFLE QUESTIONS
+    // SHUFFLE
     // ==========================================
 
     function shuffleArray(array) {

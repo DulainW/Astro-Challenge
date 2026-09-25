@@ -1,8 +1,18 @@
+// ============================================================
+// ASTRONOMY QUIZ
+// COMPLETE JAVASCRIPT
+// ============================================================
+
+
+// ============================================================
+// QUESTION BANK
+// ============================================================
+
 const questionBank = [
 
-    // ==========================================
-    // OBSERVER QUESTIONS
-    // ==========================================
+    // ========================================================
+    // OBSERVER
+    // ========================================================
 
     {
         difficulty: "observer",
@@ -85,9 +95,9 @@ const questionBank = [
     },
 
 
-    // ==========================================
-    // ASTRONOMER QUESTIONS
-    // ==========================================
+    // ========================================================
+    // ASTRONOMER
+    // ========================================================
 
     {
         difficulty: "astronomer",
@@ -122,9 +132,9 @@ const questionBank = [
     },
 
 
-    // ==========================================
-    // COSMOLOGIST QUESTIONS
-    // ==========================================
+    // ========================================================
+    // COSMOLOGIST
+    // ========================================================
 
     {
         difficulty: "cosmologist",
@@ -177,9 +187,9 @@ const questionBank = [
 ];
 
 
-// ==========================================
+// ============================================================
 // GAME VARIABLES
-// ==========================================
+// ============================================================
 
 let currentQuestion = 0;
 let score = 0;
@@ -190,82 +200,122 @@ let selectedDifficulty = "observer";
 let gameQuestions = [];
 
 
-// ==========================================
+// ============================================================
 // PAGE LOAD
-// ==========================================
+// ============================================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const homeScreen = document.getElementById("homeScreen");
-    const difficultyScreen = document.getElementById("difficultyScreen");
-    const quizScreen = document.getElementById("quizScreen");
-    const resultsScreen = document.getElementById("resultsScreen");
-    const reviewScreen = document.getElementById("reviewScreen");
 
-    const startButton = document.getElementById("startButton");
+    // ========================================================
+    // GET HTML ELEMENTS
+    // ========================================================
 
-    const questionNumber = document.getElementById("questionNumber");
-    const difficultyLabel = document.getElementById("difficultyLabel");
-    const questionText = document.getElementById("questionText");
-    const questionImage = document.getElementById("questionImage");
+    const homeScreen =
+        document.getElementById("homeScreen");
 
-    const answersContainer = document.getElementById("answers");
+    const difficultyScreen =
+        document.getElementById("difficultyScreen");
 
-    const timerDisplay = document.getElementById("timer");
-    const progressBar = document.getElementById("progressBar");
+    const quizScreen =
+        document.getElementById("quizScreen");
 
-    const hintButton = document.getElementById("hintButton");
-    const hintText = document.getElementById("hintText");
+    const resultsScreen =
+        document.getElementById("resultsScreen");
 
-    const feedback = document.getElementById("feedback");
-
-    const finalScore = document.getElementById("finalScore");
-    const finalAccuracy = document.getElementById("finalAccuracy");
-    const finalRank = document.getElementById("finalRank");
-
-    const reviewContainer = document.getElementById("reviewContainer");
-    const reviewButton = document.getElementById("reviewButton");
-    const restartButton = document.getElementById("restartButton");
+    const reviewScreen =
+        document.getElementById("reviewScreen");
 
 
-    // ==========================================
-    // CREATE NEXT BUTTON IF MISSING
-    // ==========================================
+    const startButton =
+        document.getElementById("startButton");
 
-    let nextButton = document.getElementById("nextButton");
+
+    const questionNumber =
+        document.getElementById("questionNumber");
+
+    const difficultyLabel =
+        document.getElementById("difficultyLabel");
+
+    const questionText =
+        document.getElementById("questionText");
+
+    const questionImage =
+        document.getElementById("questionImage");
+
+    const answersContainer =
+        document.getElementById("answers");
+
+
+    const timerDisplay =
+        document.getElementById("timer");
+
+    const progressBar =
+        document.getElementById("progressBar");
+
+
+    const hintButton =
+        document.getElementById("hintButton");
+
+    const hintText =
+        document.getElementById("hintText");
+
+
+    const feedback =
+        document.getElementById("feedback");
+
+
+    const finalScore =
+        document.getElementById("finalScore");
+
+    const finalAccuracy =
+        document.getElementById("finalAccuracy");
+
+    const finalRank =
+        document.getElementById("finalRank");
+
+
+    const reviewContainer =
+        document.getElementById("reviewContainer");
+
+    const reviewButton =
+        document.getElementById("reviewButton");
+
+    const restartButton =
+        document.getElementById("restartButton");
+
+
+    // ========================================================
+    // FIND OR CREATE NEXT BUTTON
+    // ========================================================
+
+    let nextButton =
+        document.getElementById("nextButton");
+
+
+    /*
+        If the HTML does not contain a next button,
+        create one automatically.
+    */
 
     if (!nextButton) {
 
-        nextButton = document.createElement("button");
+        nextButton =
+            document.createElement("button");
 
-        nextButton.id = "nextButton";
+        nextButton.id =
+            "nextButton";
 
-        nextButton.textContent = "NEXT QUESTION →";
+        nextButton.type =
+            "button";
 
-        nextButton.type = "button";
-
-        nextButton.style.display = "none";
-
-        nextButton.style.marginTop = "20px";
-
-        nextButton.style.padding = "14px 28px";
-
-        nextButton.style.cursor = "pointer";
-
-        nextButton.style.fontSize = "16px";
-
-        nextButton.style.fontWeight = "bold";
-
-        nextButton.style.border = "none";
-
-        nextButton.style.borderRadius = "8px";
-
-        nextButton.style.background = "#ffffff";
-
-        nextButton.style.color = "#000000";
+        nextButton.textContent =
+            "NEXT QUESTION →";
 
 
-        // Put button directly after the answers
+        /*
+            Put it after the answers.
+        */
 
         if (answersContainer) {
 
@@ -279,81 +329,142 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ==========================================
+    // ========================================================
+    // BASIC NEXT BUTTON SETTINGS
+    // ========================================================
+
+    nextButton.style.display =
+        "none";
+
+    nextButton.style.visibility =
+        "visible";
+
+    nextButton.style.opacity =
+        "1";
+
+
+    // ========================================================
     // START BUTTON
-    // ==========================================
+    // ========================================================
 
     if (startButton) {
 
-        startButton.addEventListener("click", function () {
+        startButton.addEventListener(
+            "click",
+            function () {
 
-            if (homeScreen) {
-                homeScreen.classList.remove("active");
+                if (homeScreen) {
+
+                    homeScreen.classList.remove(
+                        "active"
+                    );
+
+                }
+
+
+                if (difficultyScreen) {
+
+                    difficultyScreen.classList.add(
+                        "active"
+                    );
+
+                }
+
             }
-
-            if (difficultyScreen) {
-                difficultyScreen.classList.add("active");
-            }
-
-        });
+        );
 
     }
 
 
-    // ==========================================
-    // DIFFICULTY SELECTION
-    // ==========================================
+    // ========================================================
+    // DIFFICULTY BUTTONS
+    // ========================================================
 
     const difficultyCards =
-        document.querySelectorAll(".difficulty-card");
+        document.querySelectorAll(
+            ".difficulty-card"
+        );
 
 
-    difficultyCards.forEach(function (card) {
+    difficultyCards.forEach(
+        function (card) {
 
-        card.addEventListener("click", function () {
+            card.addEventListener(
+                "click",
+                function () {
 
-            selectedDifficulty =
-                card.dataset.difficulty || "observer";
-
-            startGame();
-
-        });
-
-    });
+                    selectedDifficulty =
+                        card.dataset.difficulty ||
+                        "observer";
 
 
-    // ==========================================
+                    startGame();
+
+                }
+            );
+
+        }
+    );
+
+
+    // ========================================================
     // START GAME
-    // ==========================================
+    // ========================================================
 
     function startGame() {
 
         clearInterval(timer);
 
+
         score = 0;
 
         currentQuestion = 0;
 
+
+        // ----------------------------------------------------
+        // GET QUESTIONS FOR SELECTED DIFFICULTY
+        // ----------------------------------------------------
+
         const selectedQuestions =
-            questionBank.filter(function (question) {
+            questionBank.filter(
+                function (question) {
 
-                return question.difficulty === selectedDifficulty;
+                    return (
+                        question.difficulty ===
+                        selectedDifficulty
+                    );
 
-            });
+                }
+            );
 
 
         const otherQuestions =
-            questionBank.filter(function (question) {
+            questionBank.filter(
+                function (question) {
 
-                return question.difficulty !== selectedDifficulty;
+                    return (
+                        question.difficulty !==
+                        selectedDifficulty
+                    );
 
-            });
+                }
+            );
 
 
-        shuffleArray(selectedQuestions);
+        shuffleArray(
+            selectedQuestions
+        );
 
-        shuffleArray(otherQuestions);
 
+        shuffleArray(
+            otherQuestions
+        );
+
+
+        /*
+            Put the selected difficulty questions first,
+            then fill the remaining places with other questions.
+        */
 
         gameQuestions = [
             ...selectedQuestions,
@@ -361,56 +472,100 @@ document.addEventListener("DOMContentLoaded", function () {
         ].slice(0, 10);
 
 
-        shuffleArray(gameQuestions);
+        shuffleArray(
+            gameQuestions
+        );
 
+
+        // ----------------------------------------------------
+        // CHANGE SCREENS
+        // ----------------------------------------------------
 
         if (homeScreen) {
-            homeScreen.classList.remove("active");
+
+            homeScreen.classList.remove(
+                "active"
+            );
+
         }
+
 
         if (difficultyScreen) {
-            difficultyScreen.classList.remove("active");
+
+            difficultyScreen.classList.remove(
+                "active"
+            );
+
         }
+
 
         if (resultsScreen) {
-            resultsScreen.classList.remove("active");
+
+            resultsScreen.classList.remove(
+                "active"
+            );
+
         }
+
 
         if (reviewScreen) {
-            reviewScreen.classList.remove("active");
+
+            reviewScreen.classList.remove(
+                "active"
+            );
+
         }
+
 
         if (quizScreen) {
-            quizScreen.classList.add("active");
+
+            quizScreen.classList.add(
+                "active"
+            );
+
         }
 
+
+        // ----------------------------------------------------
+        // LOAD FIRST QUESTION
+        // ----------------------------------------------------
 
         loadQuestion();
 
     }
 
 
-    // ==========================================
+    // ========================================================
     // LOAD QUESTION
-    // ==========================================
+    // ========================================================
 
     function loadQuestion() {
 
         clearInterval(timer);
+
 
         const question =
             gameQuestions[currentQuestion];
 
 
         if (!question) {
+
+            console.error(
+                "No question found:",
+                currentQuestion
+            );
+
             return;
+
         }
 
 
         hintUsed = false;
 
 
-        // Question number
+        // ====================================================
+        // QUESTION NUMBER
+        // ====================================================
 
         if (questionNumber) {
 
@@ -420,7 +575,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // Difficulty
+        // ====================================================
+        // DIFFICULTY
+        // ====================================================
 
         if (difficultyLabel) {
 
@@ -430,23 +587,46 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // Question
+        // ====================================================
+        // QUESTION TEXT
+        // ====================================================
 
         if (questionText) {
 
             questionText.textContent =
                 question.question;
 
+
+            /*
+                Force question text to remain visible.
+            */
+
+            questionText.style.display =
+                "block";
+
+            questionText.style.visibility =
+                "visible";
+
+            questionText.style.opacity =
+                "1";
+
         }
 
 
-        // ==========================================
+        // ====================================================
         // IMAGE
-        // ==========================================
+        // ====================================================
 
         if (questionImage) {
 
-            if (question.image) {
+            if (
+                question.image &&
+                question.image.trim() !== ""
+            ) {
+
+                /*
+                    QUESTION HAS AN IMAGE
+                */
 
                 questionImage.src =
                     question.image;
@@ -461,7 +641,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             else {
 
-                questionImage.removeAttribute("src");
+                /*
+                    QUESTION HAS NO IMAGE
+
+                    We hide ONLY the image.
+                    The question text remains visible.
+                */
+
+                questionImage.removeAttribute(
+                    "src"
+                );
 
                 questionImage.style.display =
                     "none";
@@ -471,28 +660,31 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // ==========================================
+        // ====================================================
         // ANSWERS
-        // ==========================================
+        // ====================================================
 
         if (answersContainer) {
 
-            answersContainer.innerHTML = "";
+            answersContainer.innerHTML =
+                "";
 
 
             question.answers.forEach(
                 function (answer, index) {
 
                     const button =
-                        document.createElement("button");
-
-
-                    button.className =
-                        "answer-button";
+                        document.createElement(
+                            "button"
+                        );
 
 
                     button.type =
                         "button";
+
+
+                    button.className =
+                        "answer-button";
 
 
                     button.textContent =
@@ -503,7 +695,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         "click",
                         function () {
 
-                            checkAnswer(index);
+                            checkAnswer(
+                                index
+                            );
 
                         }
                     );
@@ -519,63 +713,87 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // ==========================================
+        // ====================================================
         // RESET FEEDBACK
-        // ==========================================
+        // ====================================================
 
         if (feedback) {
 
-            feedback.textContent = "";
+            feedback.textContent =
+                "";
 
-            feedback.className = "feedback";
-
-        }
-
-
-        // ==========================================
-        // HIDE NEXT BUTTON
-        // ==========================================
-
-        if (nextButton) {
-
-            nextButton.style.display = "none";
-
-            nextButton.disabled = false;
-
-            nextButton.textContent =
-                currentQuestion === gameQuestions.length - 1
-                    ? "VIEW RESULTS →"
-                    : "NEXT QUESTION →";
+            feedback.className =
+                "feedback";
 
         }
 
 
-        // ==========================================
+        // ====================================================
         // RESET HINT
-        // ==========================================
+        // ====================================================
 
         if (hintText) {
 
-            hintText.textContent = "";
+            hintText.textContent =
+                "";
 
         }
 
 
         if (hintButton) {
 
-            hintButton.disabled = false;
+            hintButton.disabled =
+                false;
 
         }
 
 
-        // ==========================================
+        // ====================================================
+        // HIDE NEXT BUTTON
+        // ====================================================
+
+        if (nextButton) {
+
+            nextButton.style.display =
+                "none";
+
+
+            nextButton.disabled =
+                false;
+
+
+            if (
+                currentQuestion ===
+                gameQuestions.length - 1
+            ) {
+
+                nextButton.textContent =
+                    "VIEW RESULTS →";
+
+            }
+
+            else {
+
+                nextButton.textContent =
+                    "NEXT QUESTION →";
+
+            }
+
+        }
+
+
+        // ====================================================
         // PROGRESS
-        // ==========================================
+        // ====================================================
 
         if (progressBar) {
 
             const progress =
-                (currentQuestion / gameQuestions.length) * 100;
+                (
+                    currentQuestion /
+                    gameQuestions.length
+                ) * 100;
+
 
             progressBar.style.width =
                 progress + "%";
@@ -583,45 +801,62 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // ==========================================
+        // ====================================================
         // START TIMER
-        // ==========================================
+        // ====================================================
 
         startTimer();
 
     }
 
 
-    // ==========================================
+    // ========================================================
     // TIMER
-    // ==========================================
+    // ========================================================
 
     function startTimer() {
 
-        timeLeft = 20;
+        clearInterval(timer);
+
+
+        timeLeft =
+            20;
+
 
         updateTimer();
 
 
-        timer = setInterval(function () {
+        timer =
+            setInterval(
+                function () {
 
-            timeLeft--;
-
-            updateTimer();
+                    timeLeft--;
 
 
-            if (timeLeft <= 0) {
+                    updateTimer();
 
-                clearInterval(timer);
 
-                timeOut();
+                    if (timeLeft <= 0) {
 
-            }
+                        clearInterval(
+                            timer
+                        );
 
-        }, 1000);
+
+                        timeOut();
+
+                    }
+
+                },
+                1000
+            );
 
     }
 
+
+    // ========================================================
+    // UPDATE TIMER
+    // ========================================================
 
     function updateTimer() {
 
@@ -635,17 +870,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ==========================================
+    // ========================================================
     // CHECK ANSWER
-    // ==========================================
+    // ========================================================
 
-    function checkAnswer(selectedIndex) {
+    function checkAnswer(
+        selectedIndex
+    ) {
 
         clearInterval(timer);
 
 
         const question =
-            gameQuestions[currentQuestion];
+            gameQuestions[
+                currentQuestion
+            ];
 
 
         const buttons =
@@ -654,50 +893,73 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        // Disable answers
+        // ----------------------------------------------------
+        // DISABLE ALL ANSWERS
+        // ----------------------------------------------------
 
-        buttons.forEach(function (button) {
+        buttons.forEach(
+            function (button) {
 
-            button.disabled = true;
+                button.disabled =
+                    true;
 
-        });
+            }
+        );
 
 
-        // Show correct answer
+        // ----------------------------------------------------
+        // SHOW CORRECT ANSWER
+        // ----------------------------------------------------
 
-        if (buttons[question.correct]) {
+        if (
+            buttons[
+                question.correct
+            ]
+        ) {
 
             buttons[
                 question.correct
-            ].classList.add("correct");
+            ].classList.add(
+                "correct"
+            );
 
         }
 
 
-        // ==========================================
-        // CORRECT
-        // ==========================================
+        // ----------------------------------------------------
+        // CORRECT ANSWER
+        // ----------------------------------------------------
 
-        if (selectedIndex === question.correct) {
+        if (
+            selectedIndex ===
+            question.correct
+        ) {
 
             let points =
-                500 + (timeLeft * 10);
+                500 +
+                (
+                    timeLeft *
+                    10
+                );
 
 
             if (hintUsed) {
 
-                points -= 100;
+                points -=
+                    100;
 
             }
 
 
-            score += points;
+            score +=
+                points;
 
 
             if (feedback) {
 
                 feedback.textContent =
                     `CORRECT — +${points} points`;
+
 
                 feedback.className =
                     "feedback correct-feedback";
@@ -707,17 +969,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // ==========================================
-        // INCORRECT
-        // ==========================================
+        // ----------------------------------------------------
+        // INCORRECT ANSWER
+        // ----------------------------------------------------
 
         else {
 
-            if (buttons[selectedIndex]) {
+            if (
+                buttons[
+                    selectedIndex
+                ]
+            ) {
 
                 buttons[
                     selectedIndex
-                ].classList.add("incorrect");
+                ].classList.add(
+                    "incorrect"
+                );
 
             }
 
@@ -727,6 +995,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 feedback.textContent =
                     `INCORRECT — ${question.explanation}`;
 
+
                 feedback.className =
                     "feedback incorrect-feedback";
 
@@ -735,23 +1004,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // ==========================================
+        // ----------------------------------------------------
         // SHOW NEXT BUTTON
-        // ==========================================
+        // ----------------------------------------------------
 
         showNextButton();
 
     }
 
 
-    // ==========================================
+    // ========================================================
     // SHOW NEXT BUTTON
-    // ==========================================
+    // ========================================================
 
     function showNextButton() {
 
         if (!nextButton) {
+
+            console.error(
+                "NEXT BUTTON DOES NOT EXIST"
+            );
+
             return;
+
         }
 
 
@@ -770,17 +1045,41 @@ document.addEventListener("DOMContentLoaded", function () {
         nextButton.disabled =
             false;
 
+
+        /*
+            Change text on final question.
+        */
+
+        if (
+            currentQuestion ===
+            gameQuestions.length - 1
+        ) {
+
+            nextButton.textContent =
+                "VIEW RESULTS →";
+
+        }
+
+        else {
+
+            nextButton.textContent =
+                "NEXT QUESTION →";
+
+        }
+
     }
 
 
-    // ==========================================
+    // ========================================================
     // TIME OUT
-    // ==========================================
+    // ========================================================
 
     function timeOut() {
 
         const question =
-            gameQuestions[currentQuestion];
+            gameQuestions[
+                currentQuestion
+            ];
 
 
         const buttons =
@@ -789,26 +1088,44 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        buttons.forEach(function (button) {
+        buttons.forEach(
+            function (button) {
 
-            button.disabled = true;
+                button.disabled =
+                    true;
 
-        });
+            }
+        );
 
 
-        if (buttons[question.correct]) {
+        // ----------------------------------------------------
+        // SHOW CORRECT ANSWER
+        // ----------------------------------------------------
+
+        if (
+            buttons[
+                question.correct
+            ]
+        ) {
 
             buttons[
                 question.correct
-            ].classList.add("correct");
+            ].classList.add(
+                "correct"
+            );
 
         }
 
+
+        // ----------------------------------------------------
+        // FEEDBACK
+        // ----------------------------------------------------
 
         if (feedback) {
 
             feedback.textContent =
                 `TIME'S UP — ${question.explanation}`;
+
 
             feedback.className =
                 "feedback incorrect-feedback";
@@ -816,14 +1133,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        // ----------------------------------------------------
+        // SHOW NEXT
+        // ----------------------------------------------------
+
         showNextButton();
 
     }
 
 
-    // ==========================================
-    // NEXT QUESTION
-    // ==========================================
+    // ========================================================
+    // NEXT QUESTION BUTTON
+    // ========================================================
 
     if (nextButton) {
 
@@ -831,8 +1152,17 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
+                console.log(
+                    "Next question clicked"
+                );
+
+
                 currentQuestion++;
 
+
+                // ------------------------------------------------
+                // END OF QUIZ
+                // ------------------------------------------------
 
                 if (
                     currentQuestion >=
@@ -842,6 +1172,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     showResults();
 
                 }
+
+
+                // ------------------------------------------------
+                // NEXT QUESTION
+                // ------------------------------------------------
 
                 else {
 
@@ -855,9 +1190,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ==========================================
+    // ========================================================
     // HINT
-    // ==========================================
+    // ========================================================
 
     if (hintButton) {
 
@@ -866,7 +1201,9 @@ document.addEventListener("DOMContentLoaded", function () {
             function () {
 
                 const question =
-                    gameQuestions[currentQuestion];
+                    gameQuestions[
+                        currentQuestion
+                    ];
 
 
                 if (hintText) {
@@ -877,9 +1214,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                hintUsed = true;
+                hintUsed =
+                    true;
 
-                hintButton.disabled = true;
+
+                hintButton.disabled =
+                    true;
 
             }
         );
@@ -887,14 +1227,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ==========================================
+    // ========================================================
     // RESULTS
-    // ==========================================
+    // ========================================================
 
     function showResults() {
 
         clearInterval(timer);
 
+
+        // ----------------------------------------------------
+        // CHANGE SCREEN
+        // ----------------------------------------------------
 
         if (quizScreen) {
 
@@ -914,15 +1258,36 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        // ----------------------------------------------------
+        // CALCULATE SCORE
+        // ----------------------------------------------------
+
+        /*
+            Maximum possible score is:
+
+            700 points per question
+
+            500 base
+            + 200 maximum time bonus
+        */
+
         const maximumScore =
-            gameQuestions.length * 700;
+            gameQuestions.length *
+            700;
 
 
         const accuracy =
             Math.round(
-                (score / maximumScore) * 100
+                (
+                    score /
+                    maximumScore
+                ) * 100
             );
 
+
+        // ----------------------------------------------------
+        // DISPLAY SCORE
+        // ----------------------------------------------------
 
         if (finalScore) {
 
@@ -940,30 +1305,38 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        // ----------------------------------------------------
+        // RANK
+        // ----------------------------------------------------
+
         let rank;
 
 
         if (accuracy >= 90) {
 
-            rank = "COSMOLOGIST";
+            rank =
+                "COSMOLOGIST";
 
         }
 
         else if (accuracy >= 70) {
 
-            rank = "ASTRONOMER";
+            rank =
+                "ASTRONOMER";
 
         }
 
         else if (accuracy >= 50) {
 
-            rank = "SPACE EXPLORER";
+            rank =
+                "SPACE EXPLORER";
 
         }
 
         else {
 
-            rank = "SPACE CADET";
+            rank =
+                "SPACE CADET";
 
         }
 
@@ -976,6 +1349,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        // ----------------------------------------------------
+        // COMPLETE PROGRESS BAR
+        // ----------------------------------------------------
+
         if (progressBar) {
 
             progressBar.style.width =
@@ -986,15 +1363,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ==========================================
+    // ========================================================
     // REVIEW
-    // ==========================================
+    // ========================================================
 
     if (reviewButton) {
 
         reviewButton.addEventListener(
             "click",
             function () {
+
+                // ------------------------------------------------
+                // CHANGE SCREEN
+                // ------------------------------------------------
 
                 if (resultsScreen) {
 
@@ -1021,11 +1402,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                reviewContainer.innerHTML = "";
+                reviewContainer.innerHTML =
+                    "";
 
+
+                // ------------------------------------------------
+                // CREATE REVIEW ITEMS
+                // ------------------------------------------------
 
                 gameQuestions.forEach(
-                    function (question, index) {
+                    function (
+                        question,
+                        index
+                    ) {
 
                         const item =
                             document.createElement(
@@ -1051,7 +1440,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <strong>
                                     Correct answer:
                                 </strong>
-                                ${question.answers[question.correct]}
+
+                                ${question.answers[
+                                    question.correct
+                                ]}
                             </p>
 
                             <p>
@@ -1059,10 +1451,13 @@ document.addEventListener("DOMContentLoaded", function () {
                             </p>
 
                             <p class="review-fact">
+
                                 <strong>
                                     ASTRONOMY FACT:
                                 </strong>
+
                                 ${question.fact}
+
                             </p>
 
                         `;
@@ -1081,9 +1476,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ==========================================
+    // ========================================================
     // RESTART
-    // ==========================================
+    // ========================================================
 
     if (restartButton) {
 
@@ -1093,6 +1488,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 clearInterval(timer);
 
+
+                // ------------------------------------------------
+                // HIDE OTHER SCREENS
+                // ------------------------------------------------
 
                 if (reviewScreen) {
 
@@ -1121,6 +1520,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+                // ------------------------------------------------
+                // SHOW DIFFICULTY
+                // ------------------------------------------------
+
                 if (difficultyScreen) {
 
                     difficultyScreen.classList.add(
@@ -1135,21 +1538,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ==========================================
-    // SHUFFLE
-    // ==========================================
+    // ========================================================
+    // SHUFFLE ARRAY
+    // ========================================================
 
     function shuffleArray(array) {
 
         for (
-            let i = array.length - 1;
+            let i =
+                array.length - 1;
+
             i > 0;
+
             i--
         ) {
 
             const j =
                 Math.floor(
-                    Math.random() * (i + 1)
+                    Math.random() *
+                    (i + 1)
                 );
 
 
